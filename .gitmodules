@@ -1,0 +1,3 @@
+[submodule "ext/rubenmvc"]
+	path = ext/rubenmvc
+	url = https://rubenvincenten@github.com/rubenvincenten/RubenMVC.git
