@@ -5,26 +5,21 @@ define('START_TIME', microtime(true));
 // System Start Memory
 define('START_MEMORY_USAGE', memory_get_usage());
 
-// Directory separator (Unix-Style works on all OS)
-define('DS', '/');
+// The current TLD address, scheme, and port
+define('DOMAIN', (strtolower(getenv('HTTPS')) == 'on' ? 'https' : 'http') . '://' . getenv('HTTP_HOST') . (($p = getenv('SERVER_PORT')) != 80 AND $p != 443 ? ":$p" : ''));
 
-// Absolute path to the system folder
-define('SP', realpath(__DIR__). DS);
+// will hold if mod_rewrite is on.
+define('MOD_REWRITE', (bool)$_SERVER['MOD_REWRITE']);
+
+define('DS', '/');
+define('PATH_SITE', realpath(__DIR__) . DS);
 
 // Is this an AJAX request?
 define('AJAX_REQUEST', strtolower(getenv('HTTP_X_REQUESTED_WITH')) === 'xmlhttprequest');
 
-// The current TLD address, scheme, and port
-define('DOMAIN', (strtolower(getenv('HTTPS')) == 'on' ? 'https' : 'http') . '://'
-		. getenv('HTTP_HOST') . (($p = getenv('SERVER_PORT')) != 80 AND $p != 443 ? ":$p" : ''));
-
-// The current site path
-define('PATH', parse_url(getenv('REQUEST_URI'), PHP_URL_PATH));
-
 // Get locale from user agent
 $preference = 'nl_NL';
-if(isset($_COOKIE['lang']))
-{
+if (isset($_COOKIE['lang'])) {
 	$preference = $_COOKIE['lang'];
 }
 
