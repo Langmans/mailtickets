@@ -1,8 +1,20 @@
-RewriteEngine On
-RewriteBase /
 
-#Force Path info.
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/(robots\.txt|favicon\.ico)
-RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+#Force Path info in PHP, gets overridden in RewriteRule.
+SetEnvIf Request_URI "^/?" PATH_INFO=/
+# Mod Rewrite is off by default.
+SetEnv MOD_REWRITE 0
+
+<IfModule mod_rewrite.c>
+
+	# Update environment variable with some info. 
+	SetEnv MOD_REWRITE 1
+	RewriteEngine On
+
+	# Webroot directory relative to index.php
+	RewriteBase /
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} !^/?(robots\.txt|favicon\.ico|index.php)$
+	RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+</IfModule>
