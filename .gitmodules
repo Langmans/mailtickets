@@ -1,6 +1,6 @@
 [submodule "ext/rubenmvc"]
 	path = ext/rubenmvc
-	url = https://rubenvincenten@github.com/rubenvincenten/RubenMVC.git
+	url = git://github.com/rubenvincenten/RubenMVC.git
 [submodule "ext/php-pop3"]
 	path = ext/php-pop3
-	url = git://github.com/ryanc/php-pop3.git
+	url = git://github.com/rubenvincenten/php-pop3.git
