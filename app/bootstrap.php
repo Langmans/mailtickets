@@ -13,6 +13,7 @@ define('MOD_REWRITE', (bool)$_SERVER['MOD_REWRITE']);
 
 define('DS', '/');
 define('PATH_SITE', realpath(__DIR__) . DS);
+define('PATH_EXT', realpath(PATH_SITE . '../ext/') . DS);
 
 // Is this an AJAX request?
 define('AJAX_REQUEST', strtolower(getenv('HTTP_X_REQUESTED_WITH')) === 'xmlhttprequest');
